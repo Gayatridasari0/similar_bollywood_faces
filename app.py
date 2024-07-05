@@ -53,7 +53,14 @@ def save_uploaded_img(uploaded_img):
 
 def extract_features(img_path, model, detector):
     img = cv2.imread(img_path)
+
+    if img is None:
+        raise ValueError(f"Image at path {img_path} could not be loaded.")
+
     results = detector.detect_faces(img)
+
+    if not results:
+        raise IndexError("No faces detected in the image.")
 
     x, y, width, height = results[0]['box']
 
