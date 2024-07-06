@@ -16,6 +16,7 @@
 #
 # pickle.dump(filenames,open('filenames.pkl','wb'))
 # commented because the work is done
+import os
 import pickle
 
 import cv2
@@ -106,6 +107,10 @@ if uploaded_img is not None:
             st.subheader('Your uploaded image')
             st.image(display_image_resized, width=150, caption='Uploaded Image')
         with col2:
-            st.subheader('Look like: ' + " ".join(predict_actor))
-            # st.subheader('Look like: ' + " ".join(predict_actor.split("/")[2].split("_")))
-            st.image(filenames[index_pos], width=150, caption='Predicted Look Alike Image')
+            predicted_image_path = predict_actor
+            predicted_image = Image.open(predicted_image_path)
+            st.subheader(f'Look like: {" ".join(os.path.split(predicted_image_path)[-2].split("_"))}')
+            st.image(predicted_image, width=150, caption='Predicted Look Alike Image')
+            # st.subheader('Look like: ' + " ".join(predict_actor))
+            # # st.subheader('Look like: ' + " ".join(predict_actor.split("/")[2].split("_")))
+            # st.image(filenames[index_pos], width=150, caption='Predicted Look Alike Image')
