@@ -106,5 +106,5 @@ if uploaded_img is not None:
             st.subheader('Your uploaded image')
             st.image(display_image_resized, width=150, caption='Uploaded Image')
         with col2:
-            st.subheader('Look like: ' + " ".join(predict_actor.split("\\")[2].split("_")))
+            st.subheader('Look like: ' + " ".join(predict_actor.split("/")[2].split("_")))
             st.image(filenames[index_pos], width=150, caption='Predicted Look Alike Image')
