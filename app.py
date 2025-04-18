@@ -91,7 +91,7 @@ def recommend(feature_list, features):
 
 
 if uploaded_img is not None:
-    if (save_uploaded_img(uploaded_img)):
+    if save_uploaded_img(uploaded_img):
         display_image = Image.open(uploaded_img)
         st.header('Image Uploaded!, Processing...')
 
@@ -107,10 +107,14 @@ if uploaded_img is not None:
             st.subheader('Your uploaded image')
             st.image(display_image_resized, width=150, caption='Uploaded Image')
         with col2:
+
             predicted_image_path = predict_actor
-            predicted_image = Image.open(predicted_image_path)
-            st.subheader(f'Look like: {" ".join(os.path.split(predicted_image_path)[-2].split("_"))}')
-            st.image(predicted_image, width=150, caption='Predicted Look Alike Image')
+            if os.path.exists(predicted_image_path):
+                predicted_image = Image.open(predicted_image_path)
+                st.subheader(f'Look like: {" ".join(os.path.split(predicted_image_path)[-2].split("_"))}')
+                st.image(predicted_image, width=150, caption='Predicted Look Alike Image')
+            else:
+                st.error(f"Image not found at path: {predicted_image_path}")
             # st.subheader('Look like: ' + " ".join(predict_actor))
             # # st.subheader('Look like: ' + " ".join(predict_actor.split("/")[2].split("_")))
             # st.image(filenames[index_pos], width=150, caption='Predicted Look Alike Image')
