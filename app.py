@@ -102,7 +102,7 @@ if uploaded_img is not None:
 
         display_image_resized = display_image.resize((150, 150))
         col1, col2 = st.columns(2)
-        print(predict_actor)
+        # print(predict_actor)
         with col1:
             st.subheader('Your uploaded image')
             st.image(display_image_resized, width=150, caption='Uploaded Image')
