@@ -107,8 +107,7 @@ if uploaded_img is not None:
             st.subheader('Your uploaded image')
             st.image(display_image_resized, width=150, caption='Uploaded Image')
         with col2:
-
-            predicted_image_path = predict_actor
+            predicted_image_path = predict_actor.replace("\\", "/")  # convert to Unix-style path
             if os.path.exists(predicted_image_path):
                 predicted_image = Image.open(predicted_image_path)
                 st.subheader(f'Look like: {" ".join(os.path.split(predicted_image_path)[-2].split("_"))}')
